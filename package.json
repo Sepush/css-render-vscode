@@ -2,10 +2,9 @@
   "publisher": "Artea",
   "name": "css-render-vscode",
   "displayName": "css-render-vscode",
-  "version": "0.0.0",
-  "private": true,
-  "packageManager": "pnpm@8.10.5",
-  "description": "",
+  "version": "0.0.5",
+  "packageManager": "pnpm@10.12.2",
+  "description": "A VS Code extension for rendering CSS.",
   "author": "Artea <sepush@outlook.com>",
   "license": "MIT",
   "repository": {
@@ -19,11 +18,8 @@
     "Extension Packs"
   ],
   "main": "./dist/index.js",
-  "files": [
-    "dist"
-  ],
   "engines": {
-    "vscode": "^1.83.0"
+    "vscode": "^1.84.0"
   },
   "activationEvents": [
     "onStartupFinished"
@@ -53,6 +49,7 @@
     "tsup": "^7.2.0",
     "typescript": "^5.2.2",
     "vite": "^4.5.0",
-    "vitest": "^0.34.6"
+    "vitest": "^0.34.6",
+    "vscode-css-languageservice": "^6.3.6"
   }
 }
