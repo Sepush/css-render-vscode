@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "composite": true,
     "target": "esnext",
     "lib": ["esnext"],
     "module": "esnext",
@@ -8,12 +9,12 @@
     "types": ["node", "vscode"],
     "strict": true,
     "strictNullChecks": true,
+    "outDir": "dist",
     "esModuleInterop": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true
   },
-  "references": [
-    { "path": "./packages/client" },
-    { "path": "./packages/server" }
+  "include": [
+    "src/**/*"
   ]
 }

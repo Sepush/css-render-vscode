@@ -1,13 +1,8 @@
 {
-  "name": "lsp-sample-server",
+  "name": "css-render-vscode-server",
   "version": "1.0.0",
-  "description": "css render vscode implementation of a language server in node.",
-  "author": "sepush",
+  "description": "css render vscode server",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/sepush/css-render-vscode.git"
-  },
   "engines": {
     "node": "*"
   },
