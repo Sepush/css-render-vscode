@@ -218,7 +218,7 @@ export class CSSRCompletionProvider {
     }
   }
 
-  public validateCSSInJS(document: any): Array<{
+  public validateCSS(document: any): Array<{
     message: string
     range: Range
     severity: 'error' | 'warning'

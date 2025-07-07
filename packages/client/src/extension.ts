@@ -1,16 +1,20 @@
 import * as vscode from 'vscode'
 import { cssrProvider } from './CSSRenderProvider'
 
+export function isInCssrFile(document: vscode.TextDocument): boolean {
+  const fileName = document.fileName
+  return fileName.endsWith('.cssr.ts') || fileName.endsWith('.cssr.js')
+}
+
 export function activate(context: vscode.ExtensionContext) {
   vscode.window.showInformationMessage('CSS Render 扩展已激活！')
 
-  const cssInJSProvider = cssrProvider()
-  console.log('✅ CSS-in-JS 提供程序已创建')
+  const cssrProviderInst = cssrProvider()
+  console.log('✅ CSS Render 提供程序已创建')
 
-  const tsCompletionProvider = vscode.languages.registerCompletionItemProvider(
+  const cssrCompletionProvider = vscode.languages.registerCompletionItemProvider(
     [
-      { scheme: 'file', language: 'typescript' },
-      { scheme: 'file', language: 'javascript' },
+      { scheme: 'file', pattern: '**/*.cssr.[jt]s' },
     ],
     {
       async provideCompletionItems(document, position, _token, _context) {
@@ -19,8 +23,7 @@ export function activate(context: vscode.ExtensionContext) {
         console.log('📍 语言ID:', document.languageId)
         console.log('📍 位置:', `${position.line}:${position.character}`)
 
-        const fileName = document.fileName
-        const isCSSRFile = fileName.endsWith('.cssr.ts') || fileName.endsWith('.cssr.js')
+        const isCSSRFile = isInCssrFile(document)
 
         console.log('🎯 是否为 CSS Render 文件:', isCSSRFile)
 
@@ -29,7 +32,7 @@ export function activate(context: vscode.ExtensionContext) {
           return undefined
         }
 
-        console.log('✅ 开始提供 CSS-in-JS 补全建议')
+        console.log('✅ 开始提供 CSS Render 补全建议')
 
         try {
           const mockDocument = {
@@ -37,7 +40,7 @@ export function activate(context: vscode.ExtensionContext) {
             offsetAt: (pos: vscode.Position) => document.offsetAt(pos),
           }
 
-          const completions = await cssInJSProvider.provideCompletions(mockDocument, position)
+          const completions = await cssrProviderInst.provideCompletions(mockDocument, position)
 
           console.log(`🎉 找到 ${completions.items.length} 个补全项`)
 
@@ -51,7 +54,7 @@ export function activate(context: vscode.ExtensionContext) {
             completions.items.map((item) => {
               const vsItem = new vscode.CompletionItem(
                 typeof item.label === 'string' ? item.label : item.label.label,
-                item.kind as vscode.CompletionItemKind,
+                item.kind,
               )
 
               if (item.detail)
@@ -76,7 +79,7 @@ export function activate(context: vscode.ExtensionContext) {
           )
         }
         catch (error) {
-          console.error('❌ CSS-in-JS 补全提供程序错误:', error)
+          console.error('❌ CSS Render 补全提供程序错误:', error)
           return undefined
         }
       },
@@ -92,13 +95,13 @@ export function activate(context: vscode.ExtensionContext) {
   const diagnosticCollection = vscode.languages.createDiagnosticCollection('css-render')
 
   const diagnosticProvider = vscode.workspace.onDidChangeTextDocument((event) => {
-    if (event.document.fileName.endsWith('.cssr.ts') || event.document.fileName.endsWith('.cssr.js'))
-      updateDiagnostics(event.document, diagnosticCollection, cssInJSProvider)
+    if (isInCssrFile(event.document))
+      updateDiagnostics(event.document, diagnosticCollection, cssrProviderInst)
   })
 
   const activeEditorProvider = vscode.window.onDidChangeActiveTextEditor((editor) => {
-    if (editor && (editor.document.fileName.endsWith('.cssr.ts') || editor.document.fileName.endsWith('.cssr.js')))
-      updateDiagnostics(editor.document, diagnosticCollection, cssInJSProvider)
+    if (editor && isInCssrFile(editor.document))
+      updateDiagnostics(editor.document, diagnosticCollection, cssrProviderInst)
   })
 
   const testCommand = vscode.commands.registerCommand('cssRender.test', () => {
@@ -107,7 +110,7 @@ export function activate(context: vscode.ExtensionContext) {
   })
 
   context.subscriptions.push(
-    tsCompletionProvider,
+    cssrCompletionProvider,
     diagnosticCollection,
     diagnosticProvider,
     activeEditorProvider,
@@ -116,11 +119,10 @@ export function activate(context: vscode.ExtensionContext) {
 
   console.log('🎯 CSS Render 扩展注册完成')
 
-  // 立即检查当前活动的编辑器
   const activeEditor = vscode.window.activeTextEditor
   if (activeEditor) {
     console.log('📝 当前活动编辑器:', activeEditor.document.fileName)
-    if (activeEditor.document.fileName.endsWith('.cssr.ts') || activeEditor.document.fileName.endsWith('.cssr.js'))
+    if (isInCssrFile(activeEditor.document))
       console.log('✅ 当前文件是 CSS Render 文件，扩展应该能工作')
   }
 }
@@ -131,7 +133,7 @@ function updateDiagnostics(
   provider: ReturnType<typeof cssrProvider>,
 ) {
   try {
-    const diagnostics = provider.validateCSSInJS(document)
+    const diagnostics = provider.validateCSS(document)
 
     const vsDiagnostics = diagnostics.map((diag) => {
       const range = new vscode.Range(
