@@ -4,7 +4,7 @@
   "displayName": "css-render-vscode",
   "version": "0.0.5",
   "packageManager": "pnpm@10.12.2",
-  "description": "A VS Code extension for rendering CSS.",
+  "description": "A VS Code extension for css-render.",
   "author": "Artea <sepush@outlook.com>",
   "license": "MIT",
   "repository": {
@@ -15,25 +15,74 @@
     "url": "https://github.com/Sepush/css-render-vscode/issues"
   },
   "categories": [
-    "Extension Packs"
+    "Programming Languages",
+    "Other"
   ],
-  "main": "./dist/index.js",
+  "main": "./packages/client/out/extension",
   "engines": {
     "vscode": "^1.84.0"
   },
   "activationEvents": [
-    "onStartupFinished"
+    "onFilePattern:**/*.cssr.ts",
+    "onFilePattern:**/*.cssr.js",
+    "onLanguage:typescript",
+    "onLanguage:javascript"
   ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "cssRender.test",
+        "title": "Test CSS Render Extension"
+      }
+    ],
+    "languages": [
+      {
+        "id": "typescript",
+        "extensions": [".cssr.ts"],
+        "aliases": ["CSS Render TypeScript"]
+      },
+      {
+        "id": "javascript",
+        "extensions": [".cssr.js"],
+        "aliases": ["CSS Render JavaScript"]
+      }
+    ],
+    "configuration": {
+      "title": "CSS Render",
+      "properties": {
+        "cssRender.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable CSS Render language support"
+        },
+        "cssRender.completion.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable CSS auto-completion in css-render functions"
+        },
+        "cssRender.syntaxHighlighting.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable syntax highlighting for CSS content in css-render functions"
+        }
+      }
+    }
+  },
   "scripts": {
-    "build": "tsup src/index.ts --external vscode",
-    "dev": "nr build --watch",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "cd packages/client && tsc",
+    "build:server": "cd packages/server && tsc",
+    "dev": "npm run build:client -- --watch & npm run build:server -- --watch",
     "lint": "eslint .",
-    "vscode:prepublish": "nr build",
+    "vscode:prepublish": "npm run build",
     "publish": "vsce publish --no-dependencies",
     "pack": "vsce package --no-dependencies",
-    "test": "vitest",
     "typecheck": "tsc --noEmit",
     "release": "bumpp && nr publish"
+  },
+  "dependencies": {
+    "vscode-css-languageservice": "^6.3.7",
+    "vscode-languageserver-textdocument": "^1.0.12"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^1.1.1",
@@ -45,12 +94,7 @@
     "bumpp": "^9.2.0",
     "css-render": "^0.15.14",
     "eslint": "^8.53.0",
-    "esno": "^4.0.0",
-    "pnpm": "^8.10.5",
-    "rimraf": "^5.0.5",
     "tsup": "^7.2.0",
-    "typescript": "^5.2.2",
-    "vite": "^4.5.0",
-    "vitest": "^0.34.6"
+    "typescript": "^5.8.3"
   }
 }

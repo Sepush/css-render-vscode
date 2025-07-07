@@ -10,9 +10,10 @@
         "--extensionDevelopmentPath=${workspaceFolder}"
       ],
       "outFiles": [
-        "${workspaceFolder}/dist/**/*.js"
+        "${workspaceFolder}/packages/client/out/**/*.js",
+        "${workspaceFolder}/packages/server/out/**/*.js"
       ],
-      "preLaunchTask": "npm: dev"
+      "preLaunchTask": "dev"
     }
   ]
 }

@@ -27,6 +27,9 @@ import { c, cB, cE, cM, cNotM } from '../utils/cssr'
 // --n-text-color-pressed-checkable
 // --n-font-weight-strong
 export default cB('tag', `
+  background-color: blue;
+  background-color: black;
+  align-items: center;
   --n-close-margin: var(--n-close-margin-top) var(--n-close-margin-right) var(--n-close-margin-bottom) var(--n-close-margin-left);
   white-space: nowrap;
   position: relative;
@@ -34,7 +37,7 @@ export default cB('tag', `
   cursor: default;
   display: inline-flex;
   align-items: center;
-  flex-wrap: nowrap;
+  flex-wrap: nowrapsdfas
   padding: var(--n-padding);
   border-radius: var(--n-border-radius);
   color: var(--n-text-color);
@@ -55,6 +58,7 @@ export default cB('tag', `
   cE('border', `
     pointer-events: none;
     position: absolute;
+    cursor: none;
     left: 0;
     right: 0;
     top: 0;

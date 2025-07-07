@@ -3,18 +3,23 @@
     "composite": true,
     "target": "esnext",
     "lib": ["esnext"],
-    "module": "esnext",
+    "rootDir": "src",
+    "module": "commonjs",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "types": ["node", "vscode"],
     "strict": true,
     "strictNullChecks": true,
-    "outDir": "dist",
+    "outDir": "out",
+    "sourceMap": true,
     "esModuleInterop": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true
   },
   "include": [
     "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    ".vscode-test"
   ]
 }

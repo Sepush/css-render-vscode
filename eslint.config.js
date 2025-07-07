@@ -1,15 +1,9 @@
-// @ts-check
-const antfu = require('@antfu/eslint-config').default
+import antfu from '@antfu/eslint-config'
 
-module.exports = antfu(
-  {
-    ignores: [
-      // eslint ignore globs here
-    ],
-  },
+export default antfu(
   {
     rules: {
-      // overrides
+      'no-console': 'off',
     },
   },
 )

@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "lib": ["esnext"],
-    "module": "esnext",
+    "module": "commonjs",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "types": ["node", "vscode"],
@@ -13,7 +13,6 @@
     "skipLibCheck": true
   },
   "references": [
-    { "path": "./packages/client" },
-    { "path": "./packages/server" }
+    { "path": "./packages/client" }
   ]
 }

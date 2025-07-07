@@ -1,0 +1,106 @@
+{
+  "scopeName": "css-render.injection",
+  "name": "CSS Render Injection",
+  "injectionSelector": "L:source.ts, L:source.js, L:source.tsx, L:source.jsx, L:source.vue",
+  "patterns": [
+    {
+      "name": "meta.embedded.css.css-render",
+      "begin": "\\b(c|cB|cE|cM|cNotM)\\s*\\(\\s*([^,]+),\\s*(['\"`])",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.function.css-render"
+        },
+        "2": {
+          "name": "string.quoted.single.css-render"
+        },
+        "3": {
+          "name": "punctuation.definition.string.begin.css-render"
+        }
+      },
+      "end": "\\3",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.css-render"
+        }
+      },
+      "contentName": "source.css.embedded.css-render",
+      "patterns": [
+        {
+          "include": "source.css"
+        }
+      ]
+    },
+    {
+      "name": "meta.embedded.css.css-render.multiline",
+      "begin": "\\b(c|cB|cE|cM|cNotM)\\s*\\(\\s*([^,]+),\\s*(['\"`])",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.function.css-render"
+        },
+        "2": {
+          "name": "string.quoted.single.css-render"
+        },
+        "3": {
+          "name": "punctuation.definition.string.begin.css-render"
+        }
+      },
+      "end": "\\3",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.css-render"
+        }
+      },
+      "contentName": "source.css.embedded.css-render",
+      "patterns": [
+        {
+          "include": "source.css"
+        }
+      ]
+    },
+    {
+      "name": "meta.embedded.css.css-render.template",
+      "begin": "\\b(c|cB|cE|cM|cNotM)\\s*\\(\\s*([^,]+),\\s*`",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.function.css-render"
+        },
+        "2": {
+          "name": "string.quoted.single.css-render"
+        }
+      },
+      "end": "`",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.css-render"
+        }
+      },
+      "contentName": "source.css.embedded.css-render",
+      "patterns": [
+        {
+          "include": "source.css"
+        }
+      ]
+    },
+    {
+      "name": "meta.embedded.css.css-render.raw",
+      "begin": "\\braw\\s*:\\s*(['\"`])",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.begin.css-render"
+        }
+      },
+      "end": "\\1",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.css-render"
+        }
+      },
+      "contentName": "source.css.embedded.css-render",
+      "patterns": [
+        {
+          "include": "source.css"
+        }
+      ]
+    }
+  ]
+}

@@ -4,19 +4,21 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "type": "npm",
-      "script": "dev",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "dev"],
+      "label": "dev",
       "isBackground": true,
       "presentation": {
         "reveal": "never"
       },
       "problemMatcher": [
         {
-          "base": "$ts-webpack-watch",
+          "base": "$tsc-watch",
           "background": {
             "activeOnStart": true,
-            "beginsPattern": "Build start",
-            "endsPattern": "Build success"
+            "beginsPattern": "Starting compilation in watch mode",
+            "endsPattern": "Found \\d+ errors?\\. Watching for file changes\\."
           }
         }
       ],
