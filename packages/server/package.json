@@ -3,16 +3,6 @@
   "version": "0.0.5",
   "license": "MIT",
   "main": "./dist/server.js",
-  "scripts": {
-    "build": "tsc -b",
-    "dev": "nr build --watch",
-    "lint": "eslint .",
-    "vscode:prepublish": "nr build",
-    "publish": "vsce publish --no-dependencies",
-    "pack": "vsce package --no-dependencies",
-    "typecheck": "tsc --noEmit",
-    "release": "bumpp && nr publish"
-  },
   "dependencies": {
     "vscode-css-languageservice": "^6.3.7",
     "vscode-languageserver": "^9.0.1",

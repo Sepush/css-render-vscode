@@ -102,8 +102,6 @@
   },
   "scripts": {
     "build": "tsup",
-    "build:client": "pnpm -C ./packages/client build",
-    "build:server": "pnpm -C ./packages/server build",
     "dev": "tsup --watch",
     "lint": "eslint .",
     "vscode:prepublish": "npm run build",

@@ -8,6 +8,8 @@ export default defineConfig([
     format: ['cjs'],
     shims: false,
     dts: false,
+    bundle: true,
+    minify: true,
     external: ['vscode'],
     outExtension: () => ({
       js: '.js'
@@ -20,6 +22,7 @@ export default defineConfig([
     format: ['cjs'],
     shims: false,
     dts: false,
+    minify: true,
     external: [],
     bundle: true,
     outExtension: () => ({

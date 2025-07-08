@@ -12,16 +12,6 @@
   "activationEvents": [
     "onStartupFinished"
   ],
-  "scripts": {
-    "build": "tsup src/extension.ts --external vscode --format cjs -d dist",
-    "dev": "nr build --watch",
-    "lint": "eslint .",
-    "vscode:prepublish": "nr build",
-    "publish": "vsce publish --no-dependencies",
-    "pack": "vsce package --no-dependencies",
-    "typecheck": "tsc --noEmit",
-    "release": "bumpp && nr publish"
-  },
   "dependencies": {
     "vscode-languageclient": "^9.0.1"
   },
