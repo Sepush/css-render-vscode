@@ -2,7 +2,7 @@
   "publisher": "Artea",
   "name": "css-render-vscode",
   "displayName": "css-render-vscode",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "packageManager": "pnpm@10.12.2",
   "description": "A VS Code extension for css-render.",
   "author": "Artea <sepush@outlook.com>",
