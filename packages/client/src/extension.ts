@@ -9,7 +9,7 @@ let client: LanguageClient
 export function activate(context: ExtensionContext) {
 
   const serverModule = context.asAbsolutePath(
-    path.join('packages', 'server', 'dist', 'server.js'),
+    path.join('dist', 'server.js'),
   )
 
   const serverOptions: ServerOptions = {

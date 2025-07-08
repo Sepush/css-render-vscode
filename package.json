@@ -2,7 +2,7 @@
   "publisher": "Artea",
   "name": "css-render-vscode",
   "displayName": "css-render-vscode",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "packageManager": "pnpm@10.12.2",
   "description": "A VS Code extension for css-render.",
   "author": "Artea <sepush@outlook.com>",
@@ -18,7 +18,7 @@
     "Programming Languages",
     "Other"
   ],
-  "main": "./packages/client/dist/extension.js",
+  "main": "./dist/extension.js",
   "engines": {
     "vscode": "^1.84.0"
   },
@@ -101,10 +101,10 @@
     }
   },
   "scripts": {
-    "build": "pnpm run build:server && pnpm run build:client",
+    "build": "tsup",
     "build:client": "pnpm -C ./packages/client build",
     "build:server": "pnpm -C ./packages/server build",
-    "dev": "pnpm run build:client -- --watch & pnpm run build:server -- --watch",
+    "dev": "tsup --watch",
     "lint": "eslint .",
     "vscode:prepublish": "npm run build",
     "publish": "vsce publish --no-dependencies",
