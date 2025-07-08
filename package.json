@@ -18,16 +18,10 @@
     "Programming Languages",
     "Other"
   ],
-  "main": "./packages/client/out/extension",
+  "main": "./packages/client/dist/extension.js",
   "engines": {
     "vscode": "^1.84.0"
   },
-  "activationEvents": [
-    "onFilePattern:**/*.cssr.ts",
-    "onFilePattern:**/*.cssr.js",
-    "onLanguage:typescript",
-    "onLanguage:javascript"
-  ],
   "contributes": {
     "commands": [
       {
@@ -37,14 +31,36 @@
     ],
     "languages": [
       {
-        "id": "typescript",
-        "extensions": [".cssr.ts"],
-        "aliases": ["CSS Render TypeScript"]
+        "id": "cssr-ts",
+        "aliases": [
+          "CSS Render TypeScript"
+        ],
+        "extensions": [
+          ".cssr.ts"
+        ],
+        "configuration": "./language-configuration.json"
       },
       {
-        "id": "javascript",
-        "extensions": [".cssr.js"],
-        "aliases": ["CSS Render JavaScript"]
+        "id": "cssr-js",
+        "aliases": [
+          "CSS Render JavaScript"
+        ],
+        "extensions": [
+          ".cssr.js"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "cssr-ts",
+        "scopeName": "source.cssr.ts",
+        "path": "./syntaxes/cssr-ts.tmLanguage.json"
+      },
+      {
+        "language": "cssr-js",
+        "scopeName": "source.cssr.js",
+        "path": "./syntaxes/cssr-js.tmLanguage.json"
       }
     ],
     "configuration": {
@@ -66,13 +82,29 @@
           "description": "Enable syntax highlighting for CSS content in css-render functions"
         }
       }
+    },
+    "configurationDefaults": {
+      "[cssr-ts]": {
+        "editor.quickSuggestions": {
+          "other": true,
+          "comments": true,
+          "strings": true
+        }
+      },
+      "[cssr-js]": {
+        "editor.quickSuggestions": {
+          "other": true,
+          "comments": true,
+          "strings": true
+        }
+      }
     }
   },
   "scripts": {
-    "build": "npm run build:client && npm run build:server",
-    "build:client": "cd packages/client && tsc",
-    "build:server": "cd packages/server && tsc",
-    "dev": "npm run build:client -- --watch & npm run build:server -- --watch",
+    "build": "pnpm run build:server && pnpm run build:client",
+    "build:client": "pnpm -C ./packages/client build",
+    "build:server": "pnpm -C ./packages/server build",
+    "dev": "pnpm run build:client -- --watch & pnpm run build:server -- --watch",
     "lint": "eslint .",
     "vscode:prepublish": "npm run build",
     "publish": "vsce publish --no-dependencies",
@@ -80,19 +112,13 @@
     "typecheck": "tsc --noEmit",
     "release": "bumpp && nr publish"
   },
-  "dependencies": {
-    "vscode-css-languageservice": "^6.3.7",
-    "vscode-languageserver-textdocument": "^1.0.12"
-  },
   "devDependencies": {
     "@antfu/eslint-config": "^1.1.1",
     "@antfu/ni": "^0.21.9",
-    "@css-render/plugin-bem": "^0.15.14",
     "@types/node": "^20.9.0",
     "@types/vscode": "^1.84.1",
     "@vscode/vsce": "^2.22.0",
     "bumpp": "^9.2.0",
-    "css-render": "^0.15.14",
     "eslint": "^8.53.0",
     "tsup": "^7.2.0",
     "typescript": "^5.8.3"

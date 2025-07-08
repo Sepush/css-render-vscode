@@ -9,10 +9,20 @@
     "strict": true,
     "strictNullChecks": true,
     "esModuleInterop": true,
-    "skipDefaultLibCheck": true,
-    "skipLibCheck": true
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "server": ["./packages/server/src/index.ts"]
+    }
   },
   "references": [
-    { "path": "./packages/client" }
+    { "path": "./packages/client" },
+    { "path": "./packages/server" },
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "coverage",
+    "**/*.spec.ts",
+    "**/*.test.ts"
   ]
 }

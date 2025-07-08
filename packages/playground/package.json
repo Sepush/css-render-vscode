@@ -1,0 +1,20 @@
+{
+  "name": "playground",
+  "version": "0.0.5",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs -d dist",
+    "dev": "nr build --watch",
+    "lint": "eslint .",
+    "vscode:prepublish": "nr build",
+    "publish": "vsce publish --no-dependencies",
+    "pack": "vsce package --no-dependencies",
+    "typecheck": "tsc --noEmit",
+    "release": "bumpp && nr publish"
+  },
+  "devDependencies": {
+    "css-render": "^0.15.14",
+    "@css-render/plugin-bem": "^0.15.14"
+  }
+}

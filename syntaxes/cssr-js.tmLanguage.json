@@ -1,0 +1,8 @@
+{
+  "scopeName": "source.cssr.js",
+  "patterns": [
+    {
+      "include": "source.js"
+    }
+  ]
+}

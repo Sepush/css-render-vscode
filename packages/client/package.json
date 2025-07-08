@@ -1,10 +1,11 @@
 {
+  "name": "client",
   "version": "0.0.5",
   "license": "MIT",
   "categories": [
     "Extension Packs"
   ],
-  "main": "./dist/index.js",
+  "main": "./dist/extension.js",
   "engines": {
     "vscode": "^1.84.0"
   },
@@ -12,7 +13,7 @@
     "onStartupFinished"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --external vscode",
+    "build": "tsup src/extension.ts --external vscode --format cjs -d dist",
     "dev": "nr build --watch",
     "lint": "eslint .",
     "vscode:prepublish": "nr build",

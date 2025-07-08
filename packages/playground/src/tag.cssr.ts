@@ -1,4 +1,4 @@
-import { c, cB, cE, cM, cNotM } from '../utils/cssr'
+import { c, cB, cE, cM, cNotM } from './cssr'
 
 // vars:
 // --n-bezier
@@ -27,9 +27,16 @@ import { c, cB, cE, cM, cNotM } from '../utils/cssr'
 // --n-text-color-pressed-checkable
 // --n-font-weight-strong
 export default cB('tag', `
-  background-color: blue;
-  background-color: black;
+  display: block;
+  border: none;
+  display: block;
+  display: inline-table;
+  color: aqua;
   align-items: center;
+  border-bottom: 1px solid turquoise;
+  color: bisque;
+  border: var(--n-border);
+  color: bisque;
   --n-close-margin: var(--n-close-margin-top) var(--n-close-margin-right) var(--n-close-margin-bottom) var(--n-close-margin-left);
   white-space: nowrap;
   position: relative;
@@ -37,7 +44,7 @@ export default cB('tag', `
   cursor: default;
   display: inline-flex;
   align-items: center;
-  flex-wrap: nowrapsdfas
+  flex-wrap: nowrap;
   padding: var(--n-padding);
   border-radius: var(--n-border-radius);
   color: var(--n-text-color);
@@ -53,16 +60,22 @@ export default cB('tag', `
   font-size: var(--n-font-size);
 `, [
   cM('strong', `
+    color: brown;
     font-weight: var(--n-font-weight-strong);
   `),
   cE('border', `
     pointer-events: none;
     position: absolute;
+    border: 0;
+    text-align: right;
     cursor: none;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
+    box-shadow: none;
+    border-radius: 1px;
+    box-sizing: unset;
     border-radius: inherit;
     border: var(--n-border);
     transition: border-color .3s var(--n-bezier);
@@ -70,9 +83,11 @@ export default cB('tag', `
   cE('icon', `
     display: flex;
     margin: 0 4px 0 0;
+    color: blue;
     color: var(--n-text-color);
     transition: color .3s var(--n-bezier);
     font-size: var(--n-avatar-size-override);
+    color:red;
   `),
   cE('avatar', `
     display: flex;
