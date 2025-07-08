@@ -11,6 +11,12 @@ webpack.config.js
 vscode.proposed.d.ts
 tsconfig.json
 tsup.config.ts
-eslint.config.js
+eslint.config.ts
 pnpm-lock.yaml
 pnpm-workspace.yaml
+packages/**/src
+packages/**/*.tsbuildinfo
+packages/**/tsconfig.json
+packages/**/package.json
+**/*.map
+**/*.d.ts
