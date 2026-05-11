@@ -1,3 +1,11 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/icon-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/icon-light.png">
+    <img src="assets/icon-light.png" alt="CSS Render VSCode Extension logo" width="128" height="128">
+  </picture>
+</p>
+
 # CSS Render VSCode Extension
 This extension provides IDE support for VSCode, enabling features like completions, hover information, and syntax highlighting for CSS-in-JS libraries [CSS Render](https://github.com/07akioni/css-render).
 

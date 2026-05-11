@@ -18,6 +18,7 @@
     "Programming Languages",
     "Other"
   ],
+  "icon": "assets/icon.png",
   "main": "./dist/extension.js",
   "engines": {
     "vscode": "^1.84.0"
